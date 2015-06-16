@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Customization model &mdash; django-smooth-perms 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="django-smooth-perms 0.1.0 documentation" href="index.html"/>
+        <link rel="next" title="Admin" href="admin.html"/>
+        <link rel="prev" title="Models Permissions" href="model.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> django-smooth-perms
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="description.html">Presentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="description.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="description.html#basic-permissions">Basic permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="description.html#custom-permissions">Custom permissions</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model.html">Models Permissions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="model.html#model-example">Model example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html#add-permissions-to-this-model">Add permissions to this model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html#create-a-custom-permission">Create a custom permission</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Customization model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#permission-functions">Permission functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#one-for-rules-them-all">One for rules them all</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#low-or-high-perm-level">Low or High perm level</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="admin.html">Admin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="admin.html#add-inline-permission-in-your-modeladmin">Add inline permission in your ModelAdmin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html#define-permission-field">Define permission field</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="group.html">Friendly auth design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="group.html#configuration">Configuration</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">django-smooth-perms</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Customization model</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/model_custom.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="customization-model">
+<h1>Customization model<a class="headerlink" href="#customization-model" title="Permalink to this headline">¶</a></h1>
+<p>We take the last example above:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">smooth_perms.models</span> <span class="kn">import</span> <span class="n">GlobalPermissionMixin</span><span class="p">,</span> <span class="n">ModelPermission</span>
+<span class="kn">from</span> <span class="nn">smooth_perms.managers</span> <span class="kn">import</span> <span class="n">GlobalPermissionManager</span>
+
+<span class="k">class</span> <span class="nc">MyModelPermissionManager</span><span class="p">(</span><span class="n">GlobalPermissionManager</span><span class="p">):</span>
+  <span class="n">foreign_key</span> <span class="o">=</span> <span class="s">&#39;fk_object&#39;</span>
+
+<span class="k">class</span> <span class="nc">MyModelPermission</span><span class="p">(</span><span class="n">GlobalPermissionMixin</span><span class="p">):</span>
+   <span class="n">fk_object</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;MyModel&#39;</span><span class="p">)</span>
+
+   <span class="n">PERMISSIONS</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;asucre&#39;</span><span class="p">,)</span>
+
+   <span class="n">can_asucre</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">&quot;can a sucre&quot;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+   <span class="n">objects</span> <span class="o">=</span> <span class="n">MyModelPermissionManager</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">ModelPermission</span><span class="p">):</span>
+   <span class="o">...</span>
+   <span class="n">permissions</span> <span class="o">=</span> <span class="n">MyModelPermission</span>
+</pre></div>
+</div>
+<div class="section" id="permission-functions">
+<h2>Permission functions<a class="headerlink" href="#permission-functions" title="Permalink to this headline">¶</a></h2>
+<p>For each permission you can defined a function <code class="docutils literal"><span class="pre">has_%s_permission(self,</span> <span class="pre">request)</span></code> in ModelPermission.
+If you don&#8217;t create this function for your new permission, the generic function is called:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">has_generic_permission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">permission_type</span><span class="p">):</span>
+
+    <span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">elif</span> <span class="n">user</span><span class="o">.</span><span class="n">is_superuser</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">elif</span> <span class="n">user</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">owner</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">permission</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">permissions</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_smooth_id_list</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">permission_type</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">permission</span> <span class="o">==</span> <span class="n">GlobalPermissionManager</span><span class="o">.</span><span class="n">get_grant_all</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="ow">in</span> <span class="n">permission</span>
+</pre></div>
+</div>
+<p>If you want create your own validation, you can create your own function like bellow:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">has_asucre_permission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">Boolean</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This function must be defined in ModelPermission (in our example it&#8217;s <code class="docutils literal"><span class="pre">MyModel</span></code>)</p>
+</div>
+</div>
+<div class="section" id="one-for-rules-them-all">
+<h2>One for rules them all<a class="headerlink" href="#one-for-rules-them-all" title="Permalink to this headline">¶</a></h2>
+<p>You can set <code class="docutils literal"><span class="pre">smooth_perm_change_all</span></code> to  change the basic change permission behaviour :</p>
+<ul class="simple">
+<li>Set to <code class="docutils literal"><span class="pre">False</span></code> (default), an user need to have the django change permission on Model, and can_change permission in Object for modifying this Object</li>
+<li>Set to <code class="docutils literal"><span class="pre">True</span></code> user only need the basic change permission for change all Objects on this model.</li>
+</ul>
+<p><code class="docutils literal"><span class="pre">smooth_perm_delete_all</span></code> also exist for delete permission.</p>
+</div>
+<div class="section" id="low-or-high-perm-level">
+<h2>Low or High perm level<a class="headerlink" href="#low-or-high-perm-level" title="Permalink to this headline">¶</a></h2>
+<p>For each model you can defined if permission are low or high. But in begin what is low &amp; high :</p>
+<ul class="simple">
+<li>Low level : An user has permission if he has at least one time the permission in group or personal</li>
+<li>High level : An user has permission if <strong>ALL</strong> group and personal permission give this permission</li>
+</ul>
+<p>For illustrate with an example, we take an user U1 and 2 groups G1 &amp; G2, we base example on permission can_delete :</p>
+<ul class="simple">
+<li>Low level : if G1, G2 or U1 <strong>has</strong> permission <strong>can_delete</strong>, he <strong>can</strong> delete.</li>
+<li>High level : if G1, G2 or U1 <strong>hasn&#8217;t</strong> permission <strong>can_delete</strong>, he <strong>can&#8217;t</strong> delete.</li>
+</ul>
+<p>By default we are in <strong>low level</strong> permission for simplify user experience. For change set the variable
+<code class="docutils literal"><span class="pre">smooth_level_perm</span></code> to <code class="docutils literal"><span class="pre">SmoothPermAdmin.HIGH_LEVEL</span></code> in your <code class="docutils literal"><span class="pre">GlobalPermissionMixin</span></code></p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="admin.html" class="btn btn-neutral float-right" title="Admin" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="model.html" class="btn btn-neutral" title="Models Permissions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Jean-Baptiste Munières.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

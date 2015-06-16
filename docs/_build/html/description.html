@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Presentation &mdash; django-smooth-perms 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="django-smooth-perms 0.1.0 documentation" href="index.html"/>
+        <link rel="next" title="Models Permissions" href="model.html"/>
+        <link rel="prev" title="Django smooth perms documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> django-smooth-perms
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Presentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-permissions">Basic permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-permissions">Custom permissions</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model.html">Models Permissions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="model.html#model-example">Model example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html#add-permissions-to-this-model">Add permissions to this model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html#create-a-custom-permission">Create a custom permission</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model_custom.html">Customization model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="model_custom.html#permission-functions">Permission functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_custom.html#one-for-rules-them-all">One for rules them all</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_custom.html#low-or-high-perm-level">Low or High perm level</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="admin.html">Admin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="admin.html#add-inline-permission-in-your-modeladmin">Add inline permission in your ModelAdmin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html#define-permission-field">Define permission field</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="group.html">Friendly auth design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="group.html#configuration">Configuration</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">django-smooth-perms</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Presentation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/description.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="presentation">
+<h1>Presentation<a class="headerlink" href="#presentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>Smooth perms in a module for django admin. He allow you to defined smooth perms for your admin object.
+He is easy to set up and override.</p>
+<p>Smooth perms is divide on 2 different perms system :</p>
+<ul class="simple">
+<li>The basic permission provide by Django : <strong>can_add, can_change, can_delete</strong> (this 3 permissions have the basic behaviour).</li>
+<li>The model permission provide by smooth perms.</li>
+</ul>
+<p>What Smooth perms allow you :</p>
+<ul class="simple">
+<li>You can defined, for each object any permission you want for each group or user.</li>
+<li>For each object created, the user who created him, is called the <code class="docutils literal"><span class="pre">owner</span></code> and have all permissions on this object.</li>
+<li>An user can&#8217;t give a permission, he doesn&#8217;t have.</li>
+<li>Defined what field for each perm</li>
+<li>Custom permissions</li>
+<li>High or Low permissions (see <a class="reference external" href="model_custom.html#low-or-high-perm-level">Model Customization</a> for further information)</li>
+</ul>
+</div>
+<div class="section" id="basic-permissions">
+<h2>Basic permissions<a class="headerlink" href="#basic-permissions" title="Permalink to this headline">¶</a></h2>
+<p>Smooth perms provide this basics permissions :</p>
+<ul class="simple">
+<li><strong>can_change</strong> : User can change this object</li>
+<li><strong>can_advanced_settings</strong> : User can change advanced setting in object (define by dev)</li>
+<li><strong>can_delete</strong> : User can delete this object</li>
+<li><strong>can_change_permissions</strong> : User can add or change permissions in object</li>
+<li><strong>can_delete_permissions</strong> : User can delete permissions</li>
+<li><strong>can_view</strong> : User can only see field in read_only</li>
+</ul>
+<p>For each permission you can defined witch field is readable, changeable or exclude.
+See <a class="reference external" href="admin.html">Admin</a> configuration for more information.</p>
+</div>
+<div class="section" id="custom-permissions">
+<h2>Custom permissions<a class="headerlink" href="#custom-permissions" title="Permalink to this headline">¶</a></h2>
+<p>You can defined your own permission, and theirs behaviours.
+See <a class="reference external" href="model_custom.html">Model</a> for the definition and behaviours.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="model.html" class="btn btn-neutral float-right" title="Models Permissions" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Django smooth perms documentation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Jean-Baptiste Munières.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

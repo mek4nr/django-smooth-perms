@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Models Permissions &mdash; django-smooth-perms 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="django-smooth-perms 0.1.0 documentation" href="index.html"/>
+        <link rel="next" title="Customization model" href="model_custom.html"/>
+        <link rel="prev" title="Presentation" href="description.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> django-smooth-perms
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="description.html">Presentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="description.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="description.html#basic-permissions">Basic permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="description.html#custom-permissions">Custom permissions</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Models Permissions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#model-example">Model example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-permissions-to-this-model">Add permissions to this model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-custom-permission">Create a custom permission</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model_custom.html">Customization model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="model_custom.html#permission-functions">Permission functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_custom.html#one-for-rules-them-all">One for rules them all</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_custom.html#low-or-high-perm-level">Low or High perm level</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="admin.html">Admin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="admin.html#add-inline-permission-in-your-modeladmin">Add inline permission in your ModelAdmin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html#define-permission-field">Define permission field</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="group.html">Friendly auth design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="group.html#configuration">Configuration</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">django-smooth-perms</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Models Permissions</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/model.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="models-permissions">
+<h1>Models Permissions<a class="headerlink" href="#models-permissions" title="Permalink to this headline">¶</a></h1>
+<p>Smooth permission allow you, to create permission on each model easily.</p>
+<div class="section" id="model-example">
+<h2>Model example<a class="headerlink" href="#model-example" title="Permalink to this headline">¶</a></h2>
+<p>For this part, we have this model:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+   <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-permissions-to-this-model">
+<h2>Add permissions to this model<a class="headerlink" href="#add-permissions-to-this-model" title="Permalink to this headline">¶</a></h2>
+<p>For create and associate model to model permission, you need to create 2 classes, and update inheritance of model like bellow:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">smooth_perms.models</span> <span class="kn">import</span> <span class="n">GlobalPermissionMixin</span><span class="p">,</span> <span class="n">ModelPermission</span>
+<span class="kn">from</span> <span class="nn">smooth_perms.managers</span> <span class="kn">import</span> <span class="n">GlobalPermissionManager</span>
+
+<span class="k">class</span> <span class="nc">MyModelPermissionManager</span><span class="p">(</span><span class="n">GlobalPermissionManager</span><span class="p">):</span>
+  <span class="n">foreign_key</span> <span class="o">=</span> <span class="s">&#39;fk_object&#39;</span>
+
+<span class="k">class</span> <span class="nc">MyModelPermission</span><span class="p">(</span><span class="n">GlobalPermissionMixin</span><span class="p">):</span>
+   <span class="n">fk_object</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;MyModel&#39;</span><span class="p">)</span>
+
+   <span class="n">objects</span> <span class="o">=</span> <span class="n">MyModelPermissionManager</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">ModelPermission</span><span class="p">):</span>
+   <span class="o">...</span>
+   <span class="n">permissions</span> <span class="o">=</span> <span class="n">MyModelPermission</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The content of <code class="docutils literal"><span class="pre">foreign_key</span></code> in <code class="docutils literal"><span class="pre">GlobalPermissionManager</span></code> must be the variable name of model foreign key in <code class="docutils literal"><span class="pre">GlobalPermissionMixin</span></code></p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The class <code class="docutils literal"><span class="pre">GlobalPermissionMixin</span></code> must be defined before <code class="docutils literal"><span class="pre">ModelPermission</span></code></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The attribute <code class="docutils literal"><span class="pre">permission</span></code> just need a model class not an instance.</p>
+</div>
+<p>Now we can add permission for each instance of MyModel</p>
+</div>
+<div class="section" id="create-a-custom-permission">
+<h2>Create a custom permission<a class="headerlink" href="#create-a-custom-permission" title="Permalink to this headline">¶</a></h2>
+<p>Smooth perms allow you to create custom permission for each model.
+For this you need to do 2 things :</p>
+<ul class="simple">
+<li>Create your permissions with this syntax : <code class="docutils literal"><span class="pre">can_%s</span> <span class="pre">=</span> <span class="pre">models.BooleanField()</span></code></li>
+<li>Create or update <code class="docutils literal"><span class="pre">PERMISSIONS</span></code> variable in your <code class="docutils literal"><span class="pre">GlobalPermissionMixin</span></code> (you don&#8217;t need this variable if you use basic permissions), she must contain the name ( the <code class="docutils literal"><span class="pre">%s</span></code> in <code class="docutils literal"><span class="pre">can_%s</span></code>)</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyModelPermission</span><span class="p">(</span><span class="n">GlobalPermissionMixin</span><span class="p">):</span>
+   <span class="n">fk_object</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">&#39;MyModel&#39;</span><span class="p">)</span>
+
+   <span class="n">PERMISSIONS</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;asucre&#39;</span><span class="p">,)</span>
+
+   <span class="n">can_asucre</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">&quot;can a sucre&quot;</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+   <span class="n">objects</span> <span class="o">=</span> <span class="n">MyModelPermissionManager</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="model_custom.html" class="btn btn-neutral float-right" title="Customization model" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="description.html" class="btn btn-neutral" title="Presentation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Jean-Baptiste Munières.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
