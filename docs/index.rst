@@ -6,7 +6,7 @@ Django smooth perms documentation
 About
 -----
 
-Django smooth perms is an extension for `Django <http://www.djangoproject.com>`_ smooth permission in admin app (for object you want to)
+Django smooth perms is an extension for `Django <http://www.djangoproject.com>`_ smooth permission in admin app (for object you want to).
 This extension is currently in development.
 
 Licence
