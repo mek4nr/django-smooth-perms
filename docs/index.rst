@@ -19,10 +19,7 @@ Licence
 Installation
 ============
 
-1. You can get Django Suit by using pip or easy_install::
-
-    pip install django-smooth-perms
-
+1. You can get Django smooth perms by Github.
 
 2. You will need to add the ``'smooth-perms'`` application to the ``INSTALLED_APPS`` setting of your Django project ``settings.py`` file.::
 
