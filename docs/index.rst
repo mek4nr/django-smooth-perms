@@ -19,9 +19,11 @@ Licence
 Installation
 ============
 
-1. You can get Django smooth perms by Github.
+1. Create a ``'smooth-perms'`` dir in your project.
 
-2. You will need to add the ``'smooth-perms'`` application to the ``INSTALLED_APPS`` setting of your Django project ``settings.py`` file.::
+2. Get ``'smooth-perms'`` from Github.
+
+3. Now add the ``'smooth-perms'`` application to the ``INSTALLED_APPS`` setting of your Django project ``settings.py`` file.::
 
     INSTALLED_APPS = (
         ...
