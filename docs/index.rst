@@ -7,12 +7,13 @@ About
 -----
 
 Django smooth perms is an extension for `Django <http://www.djangoproject.com>`_ smooth permission in admin app (for object you want to)
+This extension is currently in development.
 
 Licence
 -------
 
-* Django smooth perms is licensed under `Creative Commons Attribution-NonCommercial 3.0 <http://creativecommons.org/licenses/by-nc/3.0/>`_ license.
-* See licence and pricing: `Do site here <http://www.monsite.com>`_
+* Django smooth perms is licensed under `Creative Commons Attribution-NonCommercial 4.0 <http://creativecommons.org/licenses/by-nc/4.0/>`_ license.
+* See licence and pricing: `In coming <#>`_
 
 
 Installation
