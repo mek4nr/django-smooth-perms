@@ -7,7 +7,6 @@ About
 -----
 
 Django smooth perms is an extension for `Django <http://www.djangoproject.com>`_ smooth permission in admin app (for object you want to).
-This extension is currently in development.
 
 Licence
 -------
@@ -15,15 +14,34 @@ Licence
 * Django smooth perms is licensed under `Creative Commons Attribution-NonCommercial 4.0 <http://creativecommons.org/licenses/by-nc/4.0/>`_ license.
 * See licence and pricing: `In coming <#>`_
 
+Requirements
+------------
+
+* Django 1.8.8
+* Python 2.7.9
 
 Installation
 ============
 
-1. Create a ``'smooth-perms'`` dir in your project.
+Install with github
+-------------------
 
-2. Get ``'smooth-perms'`` from Github.
+1. Go to your projects roots
 
-3. Now add the ``'smooth-perms'`` application to the ``INSTALLED_APPS`` setting of your Django project ``settings.py`` file.::
+2. Clone the project::
+    git clone https://github.com/mek4nr/smooth_perms.git
+
+Install with pip
+----------------
+1. Go to your projects roots
+
+2. pip install django-smooth-perms
+
+
+Settings.py
+-----------
+
+1. Add the ``'smooth-perms'`` application to the ``INSTALLED_APPS`` setting of your Django project ``settings.py`` file.::
 
     INSTALLED_APPS = (
         ...
@@ -32,6 +50,13 @@ Installation
     )
 
 
+2. Add ``smooth_perms.middleware.user.CurrentUserMiddleware`` to the ``MIDDLEWARE_CLASSES``::
+
+    MIDDLEWARE_CLASSES = (
+        ...
+        'smooth_perms.middleware.user.CurrentUserMiddleware',
+        ...
+    )
 
 
 Presentation
@@ -56,16 +81,6 @@ How add permissions to a model.
 
    model
 
-Customization for model
------------------------
-
-How custom your permission.
-
-.. toctree::
-   :maxdepth: 3
-
-   model_custom
-
 Admin
 -----
 
@@ -76,12 +91,12 @@ How add permissions in admin
 
    admin
 
-Group's Permission
-------------------
+Smooth Registry Model
+---------------------
 
-Create an custom and user-friendly group design
+How custom behaviour for your permission
 
 .. toctree::
    :maxdepth: 3
 
-   group
+   registry
