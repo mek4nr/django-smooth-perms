@@ -14,7 +14,7 @@ We gonna take a basic ``ModelAdmin`` like bellow::
 Add inlines permissions in your ModelAdmin
 ------------------------------------------
 
-So now we will add all stuff for see and manage permission in admin::
+So now we will add all stuff to see and manage permission in admin::
 
     from smooth_perms.admin import SmoothPermAdmin, SmoothPermInlineTabularAdmin
     from smooth_perms.utils.registry import smooth_registry
