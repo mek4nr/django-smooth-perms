@@ -58,7 +58,7 @@ Now you have model with basic permissions:
 * **change_permissions** - Needed to add/remove permissions for the object
 * **delete_permissions** - Needed to delete permissions for the object
 
-But you can create your own permission. See bellow
+But you can create your own permission. See below
 
 Create a custom permission
 --------------------------

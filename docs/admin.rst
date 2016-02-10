@@ -2,7 +2,7 @@ Admin
 =====
 
 Now we have our permissions in model, we need to configure admin
-We gonna take a basic ``ModelAdmin`` like bellow::
+We gonna take a basic ``ModelAdmin`` like below::
 
     from .models import MyObject
 
