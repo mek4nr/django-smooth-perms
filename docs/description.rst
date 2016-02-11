@@ -18,10 +18,10 @@ What Smooth perms allow you :
 * You can add smooth perm on all your models
 * You can define, for each model your customs permissions
 * You define, for each model and permissions, the behaviour (fields shown or not), directly in admin view
-* System of owner, who grant all permissions to creator of one object
-* An user can't give a permission he doesn't have.
+* Owner features, who grant all permissions to creator of one object
+* User can't give a permission he doesn't have.
 * High or Low level of permissions (see `Model Customization <model.html#low-or-high-perm-level>`_ for further information)
-* An user friendly group model for custom add, change, delete permissions
+* User friendly group model for custom **add**, **change**, **delete** permissions
 
 Permissions
 -----------
@@ -59,6 +59,6 @@ See `Registry <registry.html>`_ for more information.
 Smooth Group
 ^^^^^^^^^^^^
 
-A group model is define with a friendly user admin, for add django native permission to a group (add, change, delete).
-He is configure to have all model register in ``smooth_registry``. See `Registry <registry.html>`_ for more information.
+It's a group model with a friendly user admin, to add django native permission to a group (add, change, delete).
+Smooth Group Model is set to have all model register in ``smooth_registry``. See `Registry <registry.html>`_ for more information.
 .. note:: SmoothGroup and User are natively in smooth_registry.

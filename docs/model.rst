@@ -18,9 +18,12 @@ We will take this model for example on all documentation::
 Add permissions to this model
 -----------------------------
 
-For add permission to ``MyModel``, he need to inheritance ``ModelPermission``, create a model who contain all permissions fields using ``GlobalPermissionMixin``
-and a manager using ``GlobalPermissionManager``::
+To add permission system to ``MyModel``, you need to :
+* Add a manager using ``GlobalPermissionManager``
+* A model permission using ``GlobalPermissionMixin``
+* And your model need to be a ``ModelPermission`` model.
 
+Like sample below::
 
   from django.db import models
   from smooth_perms.models import GlobalPermissionMixin, ModelPermission, GlobalPermissionManager
@@ -38,13 +41,13 @@ and a manager using ``GlobalPermissionManager``::
      permissions = MyModelPermission
 
 
-.. important:: The content of ``foreign_key`` in ``GlobalPermissionManager`` must be the variable name of model foreign key in ``GlobalPermissionMixin``
+.. important:: The content of ``foreign_key`` in ``GlobalPermissionManager`` must be the field name of model foreign-key's in ``GlobalPermissionMixin``
 
 .. important:: The class ``GlobalPermissionMixin`` must be defined before ``ModelPermission``
 
-.. note:: The attribute ``permission`` just need a model class not an instance.
+.. note:: The attribute ``permissions`` need to be a model class not an instance.
 
-The model are now setup, just need to setup admin, see `Admin <admin.html>`_
+The model are now setup, it rest just to setup admin, see `Admin <admin.html>`_
 
 Basic permission
 ----------------
@@ -150,23 +153,23 @@ One for rules them all
 
 You can set ``smooth_perm_change_all`` to  change the basic change permission behaviour :
 
-* Set to ``False`` (default), an user need to have the django change permission on Model, and can_change permission in Object for modifying this Object
-* Set to ``True`` user only need the basic change permission for change all Objects on this model.
+* Set to ``False`` (default), a user need to have the django change permission on Model, and can_change permission in Object to modifying this Object
+* Set to ``True`` user only need the basic change permission to change all Objects on this model.
 
-``smooth_perm_delete_all`` also exist for delete permission.
+``smooth_perm_delete_all`` also exist to delete permission.
 
 Low or High perm level
 ^^^^^^^^^^^^^^^^^^^^^^
 
-For each model you can defined if permission are low or high. But in begin what is low & high :
+For each model you can defined if permission are low or high:
 
-* Low level : An user has permission if he has at least one time the permission in group or personal
-* High level : An user has permission if **ALL** group and personal permission give this permission
+* Low level : a user has permission if he has at least one time the permission in group or personal
+* High level : a user has permission if **ALL** group and personal permission give this permission
 
-For illustrate with an example, we take an user U1 and 2 groups G1 & G2, we base example on permission can_delete :
+To illustrate with an example, we take a user U1 and 2 groups G1 & G2, we base example on permission can_delete :
 
 * Low level : if G1, G2 or U1 **has** permission **can_delete**, he **can** delete.
 * High level : if G1, G2 or U1 **hasn't** permission **can_delete**, he **can't** delete.
 
-By default we are in **low level** permission for simplify user experience. For change set the variable
+By default we are in **low level** permission to simplify user experience. To change set the variable
 ``smooth_level_perm`` to ``SmoothPermAdmin.HIGH_LEVEL`` in your ``GlobalPermissionMixin``

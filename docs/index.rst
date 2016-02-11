@@ -74,7 +74,7 @@ Customization
 Models
 ------
 
-How add permissions to a model.
+How to add permissions to a model.
 
 .. toctree::
    :maxdepth: 3
@@ -84,7 +84,7 @@ How add permissions to a model.
 Admin
 -----
 
-How add permissions in admin
+How to add permissions in admin
 
 .. toctree::
    :maxdepth: 3
@@ -94,7 +94,7 @@ How add permissions in admin
 Smooth Registry Model
 ---------------------
 
-How custom behaviour for your permission
+How to custom behaviour for your permission
 
 .. toctree::
    :maxdepth: 3

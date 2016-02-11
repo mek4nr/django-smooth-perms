@@ -10,7 +10,7 @@ Register model
 --------------
 
 You can add all your model in the registry (not only ModelPermission Model).
-For add a model ::
+To add a model ::
 
     smooth_registry.register(MyModel, "text to show")
 
