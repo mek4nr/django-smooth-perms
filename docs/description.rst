@@ -4,42 +4,61 @@ Presentation
 Description
 -----------
 
-Smooth perms in a module for django admin. He allow you to defined smooth perms for your admin object.
-He is easy to set up and override.
+Smooth perms is a module for django admin. He allow you to define smooth perms for your admin objects.
+He is easy to set up and/or override.
 
-Smooth perms is divide on 2 different perms system :
+Smooth perms use 2 different permissions systems :
 
-* The basic permission provide by Django : **can_add, can_change, can_delete** (this 3 permissions have the basic behaviour).
-* The model permission provide by smooth perms.
+* The basic permissions provided by Django : **can_add, can_change, can_delete** (this 3 permissions have the basic behaviour).
+* The model permissions provided by smooth perms.
 
 
 What Smooth perms allow you :
 
-* You can defined, for each object any permission you want for each group or user.
-* For each object created, the user who created him, is called the ``owner`` and have all permissions on this object.
-* An user can't give a permission, he doesn't have.
-* Defined what field for each perm
-* Custom permissions
-* High or Low permissions (see `Model Customization <model_custom.html#low-or-high-perm-level>`_ for further information)
+* You can add smooth perm on all your models
+* You can define, for each model your customs permissions
+* You define, for each model and permissions, the behaviour (fields shown or not), directly in admin view
+* Owner features, who grant all permissions to creator of one object
+* User can't give a permission he doesn't have.
+* High or Low level of permissions (see `Model Customization <model.html#low-or-high-perm-level>`_ for further information)
+* User friendly group model for custom **add**, **change**, **delete** permissions
+
+Permissions
+-----------
 
 Basic permissions
------------------
+^^^^^^^^^^^^^^^^^
 
 Smooth perms provide this basics permissions :
 
-* **can_change** : User can change this object
-* **can_advanced_settings** : User can change advanced setting in object (define by dev)
-* **can_delete** : User can delete this object
-* **can_change_permissions** : User can add or change permissions in object
-* **can_delete_permissions** : User can delete permissions
-* **can_view** : User can only see field in read_only
+* **view** - Needed to see the object in read_only
+* **change** - Needed to change the object
+* **advanced_settings** - You need to customize the effect
+* **delete** - Needed to delete the object
+* **change_permissions** - Needed to add/remove permissions for the object
+* **delete_permissions** - Needed to delete permissions for the object
 
 For each permission you can defined witch field is readable, changeable or exclude.
-See `Admin <admin.html>`_ configuration for more information.
+See `Field registry <registry.html#modify-fields-permissions>`_ configuration for more information.
 
 Custom permissions
-------------------
+^^^^^^^^^^^^^^^^^^
 
 You can defined your own permission, and theirs behaviours.
-See `Model <model_custom.html>`_ for the definition and behaviours.
+See `Model <model.html>`_ for the definition and behaviours.
 
+Admin
+-----
+
+Smooth Registry
+^^^^^^^^^^^^^^^
+
+You can define behaviours for all permissions, in admin, thanks to Smooth registry model.
+See `Registry <registry.html>`_ for more information.
+
+Smooth Group
+^^^^^^^^^^^^
+
+It's a group model with a friendly user admin, to add django native permission to a group (add, change, delete).
+Smooth Group Model is set to have all model register in ``smooth_registry``. See `Registry <registry.html>`_ for more information.
+.. note:: SmoothGroup and User are natively in smooth_registry.

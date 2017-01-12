@@ -1,4 +1,2 @@
 _build/*
-_static/*
 _template/*
-!_static/img/*

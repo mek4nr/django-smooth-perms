@@ -1,0 +1,3 @@
+[submodule "smooth_perms"]
+	path = smooth_perms
+	url = https://github.com/mek4nr/smooth_perms
